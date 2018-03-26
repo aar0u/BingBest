@@ -54,3 +54,11 @@ class Downloader:
 		pic = os.getcwd() + os.path.sep + self._image
 		if os.name == 'nt':
 			win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, pic, 1+2)
+		else:
+			# Only support gnome now
+			os.system("./gnome_set_wallpaper.sh " + pic)
+
+
+if __name__ == '__main__':
+	d = Downloader()
+	d.get()
