@@ -34,12 +34,12 @@ if is_CLI:
 			break
 	config["date"] = date
 	config["country"] = country
+
+	with open("config.json", "w") as f:
+		json.dump(config, f)
 else:
 	date = default_date
 	country = default_country
-
-with open("config.json", "w") as f:
-	json.dump(config, f)
 
 client = Downloader(date, country.lower())
 client.get()

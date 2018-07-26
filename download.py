@@ -38,12 +38,13 @@ class Downloader:
 			return
 		urlbase = resp['images'][0]['urlbase']
 		width, height = get_screen_resolution()
-		url = '{}_{}x{}.jpg'.format(self.bing+urlbase, width, height)
+		# Hardcode width and height
+		url = '{}_{}x{}.jpg'.format(self.bing+urlbase, 1920, 1080)
 		name = url.split('/')[-1]
 		pic = requests.get(url, headers = self._headers).content
 		with open(self._save_path+name, 'wb') as f:
 			f.write(pic)
-		logging.info("Get image {}".format(name))
+		logging.info("Get image {}".format(url))
 		self._got_pic = True
 		self._image = self._save_path + name
 
